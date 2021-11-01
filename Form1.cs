@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace walsnenotatki
@@ -16,5 +17,19 @@ namespace walsnenotatki
         {
             InitializeComponent();
         }
+        /// //////////////////////////////////////
+        struct Notatnik
+        {
+            public string nazwa;
+            public string data;
+            public string priorytet;
+        }
+        Notatnik notatka = new Notatnik();
+        /// //////////////////////////////////////
+        private void dodaj_notatke_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
+    
 }
