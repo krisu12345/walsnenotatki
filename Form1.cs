@@ -16,9 +16,14 @@ namespace walsnenotatki
         public Form1()
         {
             InitializeComponent();
+            wczytanie_danych();
         }
 
-
+        public void wczytanie_danych()
+        {
+            string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
+            dane.Text += wczytywanie;
+        }
         /// /////////////////TWORZENIE STRUKTURY/////////////////////
         struct Notatnik
         {
@@ -35,30 +40,24 @@ namespace walsnenotatki
             ///utworzenie listy
             List<Notatnik> lista = new List<Notatnik>();
 
-            /// usuwanie tekstu z labelu
-            dane.Text = "";
-
             ///nadawanie wartosci strukturom
             notatka.nazwa = wprowadz_dane.Text;
             notatka.data = data_wykonania.Value;
             foreach (string s in priorytet.CheckedItems) ///zaznaczone na tekst
                 notatka.priorytet = s;
-            dane.Text += $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}";
-
-
+ 
+            ///dodanie do listy struktury
             lista.Add(notatka);
 
-
+            dane.Text += $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}\n";
 
 
             //// zapisanie do pliku 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-           
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
             {
-                foreach (var line in lista)
-                    outputFile.WriteLine($"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}");
+                foreach (var line in lista.ToArray())
+                    outputFile.WriteLine($"{line.nazwa}  {line.data.ToString("d.MM")}  {line.priorytet}\n");
             }
         }
     }
