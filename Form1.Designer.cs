@@ -29,6 +29,7 @@ namespace walsnenotatki
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tytul = new System.Windows.Forms.Label();
             this.wprowadz_dane = new System.Windows.Forms.TextBox();
             this.dodaj_notatke = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@ namespace walsnenotatki
             this.priorytet = new System.Windows.Forms.CheckedListBox();
             this.lista_rzeczy = new System.Windows.Forms.CheckedListBox();
             this.usun = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // tytul
@@ -67,7 +69,7 @@ namespace walsnenotatki
             // 
             // data_wykonania
             // 
-            this.data_wykonania.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.data_wykonania.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.data_wykonania.Location = new System.Drawing.Point(50, 110);
             this.data_wykonania.Name = "data_wykonania";
             this.data_wykonania.Size = new System.Drawing.Size(96, 20);
@@ -108,6 +110,12 @@ namespace walsnenotatki
             this.usun.UseVisualStyleBackColor = true;
             this.usun.Click += new System.EventHandler(this.usun_Click);
             // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 10000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +144,7 @@ namespace walsnenotatki
         private System.Windows.Forms.CheckedListBox priorytet;
         private System.Windows.Forms.CheckedListBox lista_rzeczy;
         private System.Windows.Forms.Button usun;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
