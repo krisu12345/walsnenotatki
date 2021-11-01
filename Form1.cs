@@ -57,7 +57,7 @@ namespace walsnenotatki
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
             {
                 foreach (var line in lista.ToArray())
-                    outputFile.WriteLine($"{line.nazwa}  {line.data.ToString("d.MM")}  {line.priorytet}\n");
+                    outputFile.WriteLine(dane.Text);
             }
         }
     }
