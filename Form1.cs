@@ -45,18 +45,19 @@ namespace walsnenotatki
             notatka.data = data_wykonania.Value;
             foreach (string s in priorytet.CheckedItems) ///zaznaczone na tekst
                 notatka.priorytet = s;
- 
+
             ///dodanie do listy struktury
             lista.Add(notatka);
 
             dane.Text += $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}\n";
 
+            
 
             //// zapisanie do pliku 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
             {
-                foreach (var line in lista.ToArray())
+                foreach (var line in lista)
                     outputFile.WriteLine(dane.Text);
             }
         }
