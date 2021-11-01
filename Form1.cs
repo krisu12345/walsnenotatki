@@ -17,19 +17,51 @@ namespace walsnenotatki
         {
             InitializeComponent();
         }
-        /// //////////////////////////////////////
+
+
+        /// /////////////////TWORZENIE STRUKTURY/////////////////////
         struct Notatnik
         {
             public string nazwa;
-            public string data;
+            public DateTime data;
             public string priorytet;
         }
         Notatnik notatka = new Notatnik();
-        /// //////////////////////////////////////
+        /// ////////////////////////////////////////////////////////
+
+ 
         private void dodaj_notatke_Click(object sender, EventArgs e)
         {
-            
+            ///utworzenie listy
+            List<Notatnik> lista = new List<Notatnik>();
+
+            /// usuwanie tekstu z labelu
+            dane.Text = "";
+
+            ///nadawanie wartosci strukturom
+            notatka.nazwa = wprowadz_dane.Text;
+            notatka.data = data_wykonania.Value;
+            foreach (string s in priorytet.CheckedItems) ///zaznaczone na tekst
+                notatka.priorytet = s;
+            dane.Text += $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}";
+
+
+            lista.Add(notatka);
+
+
+
+
+            //// zapisanie do pliku 
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+           
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
+            {
+                foreach (var line in lista)
+                    outputFile.WriteLine($"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}");
+            }
         }
     }
-    
-}
+
+    }
+
