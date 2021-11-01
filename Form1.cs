@@ -22,7 +22,7 @@ namespace walsnenotatki
         public void wczytanie_danych()
         {
             string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
-            dane.Text += wczytywanie;
+            lista_rzeczy.Items.Add(wczytywanie);
         }
         /// /////////////////TWORZENIE STRUKTURY/////////////////////
         struct Notatnik
@@ -48,17 +48,14 @@ namespace walsnenotatki
 
             ///dodanie do listy struktury
             lista.Add(notatka);
-
-            dane.Text += $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}\n";
-
             
-
+            lista_rzeczy.Items.Add( $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}\n");
             //// zapisanie do pliku 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
             {
-                foreach (var line in lista)
-                    outputFile.WriteLine(dane.Text);
+                foreach (var line in lista_rzeczy.Items)
+                    outputFile.WriteLine(line.ToString());
             }
         }
     }

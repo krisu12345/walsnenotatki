@@ -30,11 +30,11 @@ namespace walsnenotatki
         private void InitializeComponent()
         {
             this.tytul = new System.Windows.Forms.Label();
-            this.dane = new System.Windows.Forms.Label();
             this.wprowadz_dane = new System.Windows.Forms.TextBox();
             this.dodaj_notatke = new System.Windows.Forms.Button();
             this.data_wykonania = new System.Windows.Forms.DateTimePicker();
             this.priorytet = new System.Windows.Forms.CheckedListBox();
+            this.lista_rzeczy = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // tytul
@@ -46,15 +46,6 @@ namespace walsnenotatki
             this.tytul.Size = new System.Drawing.Size(132, 13);
             this.tytul.TabIndex = 0;
             this.tytul.Text = "NOTATNIK KRZYCHA";
-            // 
-            // dane
-            // 
-            this.dane.AutoSize = true;
-            this.dane.Location = new System.Drawing.Point(537, 139);
-            this.dane.Name = "dane";
-            this.dane.Size = new System.Drawing.Size(31, 13);
-            this.dane.TabIndex = 1;
-            this.dane.Text = "dane";
             // 
             // wprowadz_dane
             // 
@@ -84,6 +75,7 @@ namespace walsnenotatki
             // priorytet
             // 
             this.priorytet.FormattingEnabled = true;
+            this.priorytet.ImeMode = System.Windows.Forms.ImeMode.HangulFull;
             this.priorytet.Items.AddRange(new object[] {
             "A",
             "B",
@@ -94,16 +86,27 @@ namespace walsnenotatki
             this.priorytet.Size = new System.Drawing.Size(36, 64);
             this.priorytet.TabIndex = 5;
             // 
+            // lista_rzeczy
+            // 
+            this.lista_rzeczy.ColumnWidth = 250;
+            this.lista_rzeczy.FormattingEnabled = true;
+            this.lista_rzeczy.Location = new System.Drawing.Point(437, 151);
+            this.lista_rzeczy.MultiColumn = true;
+            this.lista_rzeczy.Name = "lista_rzeczy";
+            this.lista_rzeczy.ScrollAlwaysVisible = true;
+            this.lista_rzeczy.Size = new System.Drawing.Size(250, 349);
+            this.lista_rzeczy.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 617);
+            this.Controls.Add(this.lista_rzeczy);
             this.Controls.Add(this.priorytet);
             this.Controls.Add(this.data_wykonania);
             this.Controls.Add(this.dodaj_notatke);
             this.Controls.Add(this.wprowadz_dane);
-            this.Controls.Add(this.dane);
             this.Controls.Add(this.tytul);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -115,11 +118,11 @@ namespace walsnenotatki
         #endregion
 
         private System.Windows.Forms.Label tytul;
-        private System.Windows.Forms.Label dane;
         private System.Windows.Forms.TextBox wprowadz_dane;
         private System.Windows.Forms.Button dodaj_notatke;
         private System.Windows.Forms.DateTimePicker data_wykonania;
         private System.Windows.Forms.CheckedListBox priorytet;
+        private System.Windows.Forms.CheckedListBox lista_rzeczy;
     }
 }
 
