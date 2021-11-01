@@ -18,11 +18,15 @@ namespace walsnenotatki
             InitializeComponent();
             wczytanie_danych();
         }
-
+        
         public void wczytanie_danych()
         {
             string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
             lista_rzeczy.Items.Add(wczytywanie);
+        }
+        public void odswiezenie()
+        {
+            string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
         }
         /// /////////////////TWORZENIE STRUKTURY/////////////////////
         struct Notatnik
@@ -57,6 +61,20 @@ namespace walsnenotatki
                 foreach (var line in lista_rzeczy.Items)
                     outputFile.WriteLine(line.ToString());
             }
+        }
+
+        private void usun_Click(object sender, EventArgs e)
+        {
+            for (int i = lista_rzeczy.Items.Count - 1; i >= 0; i--)
+            {
+                if (lista_rzeczy.GetItemChecked(i))
+                {
+                    lista_rzeczy.Items.Remove(lista_rzeczy.Items[i]);
+                }
+            }
+            odswiezenie();
+
+
         }
     }
 

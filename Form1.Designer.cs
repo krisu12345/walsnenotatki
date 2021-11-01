@@ -35,15 +35,16 @@ namespace walsnenotatki
             this.data_wykonania = new System.Windows.Forms.DateTimePicker();
             this.priorytet = new System.Windows.Forms.CheckedListBox();
             this.lista_rzeczy = new System.Windows.Forms.CheckedListBox();
+            this.usun = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tytul
             // 
             this.tytul.AutoSize = true;
-            this.tytul.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tytul.Location = new System.Drawing.Point(490, 84);
+            this.tytul.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tytul.Location = new System.Drawing.Point(414, 73);
             this.tytul.Name = "tytul";
-            this.tytul.Size = new System.Drawing.Size(132, 13);
+            this.tytul.Size = new System.Drawing.Size(307, 31);
             this.tytul.TabIndex = 0;
             this.tytul.Text = "NOTATNIK KRZYCHA";
             // 
@@ -97,11 +98,22 @@ namespace walsnenotatki
             this.lista_rzeczy.Size = new System.Drawing.Size(250, 349);
             this.lista_rzeczy.TabIndex = 6;
             // 
+            // usun
+            // 
+            this.usun.Location = new System.Drawing.Point(215, 151);
+            this.usun.Name = "usun";
+            this.usun.Size = new System.Drawing.Size(75, 23);
+            this.usun.TabIndex = 7;
+            this.usun.Text = "Usuń note";
+            this.usun.UseVisualStyleBackColor = true;
+            this.usun.Click += new System.EventHandler(this.usun_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 617);
+            this.Controls.Add(this.usun);
             this.Controls.Add(this.lista_rzeczy);
             this.Controls.Add(this.priorytet);
             this.Controls.Add(this.data_wykonania);
@@ -123,6 +135,7 @@ namespace walsnenotatki
         private System.Windows.Forms.DateTimePicker data_wykonania;
         private System.Windows.Forms.CheckedListBox priorytet;
         private System.Windows.Forms.CheckedListBox lista_rzeczy;
+        private System.Windows.Forms.Button usun;
     }
 }
 
