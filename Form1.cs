@@ -51,12 +51,16 @@ namespace walsnenotatki
                 notatka.priorytet = s;
 
             ///roznica dni i teksty
-            DateTime teraz = DateTime.Now;
+            /*DateTime teraz = DateTime.Now;
             TimeSpan wynik = (notatka.data - teraz);
             notatka.roznica = wynik.Days.ToString();
-            if(notatka.roznica == "1")
+            if (notatka.roznica == "0")
             {
-                notatka.roznica = "2";
+                notatka.roznica = "jutro";
+            }
+            else if (notatka.roznica == "1")
+            {
+                notatka.roznica = "pojutrze";
             }
             else if (notatka.roznica == "2")
             {
@@ -76,7 +80,7 @@ namespace walsnenotatki
             }
             else if (notatka.roznica == "6")
             {
-                notatka.roznica = "7";
+                notatka.roznica = "tydzień";
             }
             else if (notatka.roznica == "8")
             {
@@ -100,14 +104,15 @@ namespace walsnenotatki
             }
             else if (notatka.roznica == "13")
             {
-                notatka.roznica = "14";
+                notatka.roznica = "dwa tygodnie";
             }
+            */
 
 
             ///dodanie do listy struktury
             lista.Add(notatka);
             
-            lista_rzeczy.Items.Add( $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}   Odbędzie się za: {notatka.roznica} dni\n");   ///
+            lista_rzeczy.Items.Add( $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}\n");   ///
             //// zapisanie do pliku 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
