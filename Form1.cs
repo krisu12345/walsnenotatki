@@ -17,22 +17,8 @@ namespace walsnenotatki
         {
             InitializeComponent();
             wczytanie_danych();
-            czas();
         }
-        public void czas()
-        {
-            DateTime aktualny_czas = DateTime.Now;
-            String.Format("{0:d}", aktualny_czas);
 
-
-            DateTime date2 = data_wykonania.Value;
-            String.Format("{0:d}", date2);
-            TimeSpan wynik = date2 - aktualny_czas;
-
-
-            string Wynikdni = wynik.TotalDays.ToString();
-            notatka.roznica = Wynikdni;
-        }
         public void wczytanie_danych()
         {
             string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
@@ -63,12 +49,65 @@ namespace walsnenotatki
             notatka.data = data_wykonania.Value;
             foreach (string s in priorytet.CheckedItems) ///zaznaczone na tekst
                 notatka.priorytet = s;
-             
+
+            ///roznica dni i teksty
+            DateTime teraz = DateTime.Now;
+            TimeSpan wynik = (notatka.data - teraz);
+            notatka.roznica = wynik.Days.ToString();
+            if(notatka.roznica == "1")
+            {
+                notatka.roznica = "2";
+            }
+            else if (notatka.roznica == "2")
+            {
+                  notatka.roznica = "3";
+            }
+            else if (notatka.roznica == "3")
+            {
+                  notatka.roznica = "4";
+            }
+            else if (notatka.roznica == "4")
+            {
+                notatka.roznica = "5";
+            }
+            else if (notatka.roznica == "5")
+            {
+                notatka.roznica = "6";
+            }
+            else if (notatka.roznica == "6")
+            {
+                notatka.roznica = "7";
+            }
+            else if (notatka.roznica == "8")
+            {
+                notatka.roznica = "9";
+            }
+            else if (notatka.roznica == "9")
+            {
+                notatka.roznica = "10";
+            }
+            else if (notatka.roznica == "10")
+            {
+                notatka.roznica = "11";
+            }
+            else if (notatka.roznica == "11")
+            {
+                notatka.roznica = "12";
+            }
+            else if (notatka.roznica == "12")
+            {
+                notatka.roznica = "13";
+            }
+            else if (notatka.roznica == "13")
+            {
+                notatka.roznica = "14";
+            }
+
 
             ///dodanie do listy struktury
             lista.Add(notatka);
             
-            lista_rzeczy.Items.Add( $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}   {notatka.roznica}\n");
+            lista_rzeczy.Items.Add( $"{notatka.nazwa}   {notatka.data.ToString("d.MM")}   {notatka.priorytet}   Odbędzie się za: {notatka.roznica} dni\n");   ///
             //// zapisanie do pliku 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka.txt")))
@@ -76,7 +115,6 @@ namespace walsnenotatki
                 foreach (var line in lista_rzeczy.Items)
                     outputFile.WriteLine(line.ToString());
             }
-            czas();
         }
         
 
@@ -95,7 +133,7 @@ namespace walsnenotatki
        
         private void timer_Tick(object sender, EventArgs e)
         {
-            //czas();
+        
         }
     }
 
