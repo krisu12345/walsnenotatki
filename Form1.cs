@@ -17,8 +17,13 @@ namespace walsnenotatki
         {
             InitializeComponent();
             wczytanie_danych();
+            wczytanie_ulubionych();
         }
-
+        public void wczytanie_ulubionych()
+        {
+            string wczytywanie2 = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka_ulubione.txt");
+            ulubione.Items.Add(wczytywanie2);
+        }
         public void wczytanie_danych()
         {
             string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
@@ -26,7 +31,8 @@ namespace walsnenotatki
         }
         public void odswiezenie()
         {
-            string wczytywanie = System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
+            System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka.txt");
+            System.IO.File.ReadAllText(@"C:\Users\48510\Desktop\notatka_ulubione.txt");
         }
         /// /////////////////TWORZENIE STRUKTURY/////////////////////
         struct Notatnik
@@ -34,7 +40,7 @@ namespace walsnenotatki
             public string nazwa;
             public DateTime data;
             public string priorytet;
-            public string roznica;
+            //public string roznica;
         }
         Notatnik notatka = new Notatnik();
         /// ////////////////////////////////////////////////////////
@@ -49,64 +55,6 @@ namespace walsnenotatki
             notatka.data = data_wykonania.Value;
             foreach (string s in priorytet.CheckedItems) ///zaznaczone na tekst
                 notatka.priorytet = s;
-
-            ///roznica dni i teksty
-            /*DateTime teraz = DateTime.Now;
-            TimeSpan wynik = (notatka.data - teraz);
-            notatka.roznica = wynik.Days.ToString();
-            if (notatka.roznica == "0")
-            {
-                notatka.roznica = "jutro";
-            }
-            else if (notatka.roznica == "1")
-            {
-                notatka.roznica = "pojutrze";
-            }
-            else if (notatka.roznica == "2")
-            {
-                  notatka.roznica = "3";
-            }
-            else if (notatka.roznica == "3")
-            {
-                  notatka.roznica = "4";
-            }
-            else if (notatka.roznica == "4")
-            {
-                notatka.roznica = "5";
-            }
-            else if (notatka.roznica == "5")
-            {
-                notatka.roznica = "6";
-            }
-            else if (notatka.roznica == "6")
-            {
-                notatka.roznica = "tydzień";
-            }
-            else if (notatka.roznica == "8")
-            {
-                notatka.roznica = "9";
-            }
-            else if (notatka.roznica == "9")
-            {
-                notatka.roznica = "10";
-            }
-            else if (notatka.roznica == "10")
-            {
-                notatka.roznica = "11";
-            }
-            else if (notatka.roznica == "11")
-            {
-                notatka.roznica = "12";
-            }
-            else if (notatka.roznica == "12")
-            {
-                notatka.roznica = "13";
-            }
-            else if (notatka.roznica == "13")
-            {
-                notatka.roznica = "dwa tygodnie";
-            }
-            */
 
 
             ///dodanie do listy struktury
@@ -133,12 +81,38 @@ namespace walsnenotatki
                     lista_rzeczy.Items.Remove(lista_rzeczy.Items[i]);
                 }
             }
+            for (int i = ulubione.Items.Count - 1; i >= 0; i--)
+            {
+                if (ulubione.GetItemChecked(i))
+                {
+                    ulubione.Items.Remove(ulubione.Items[i]);
+                }
+            }
             odswiezenie();
         }
        
         private void timer_Tick(object sender, EventArgs e)
         {
         
+        }
+
+        private void dodaj_fav_Click(object sender, EventArgs e)
+        {
+            for (int i = lista_rzeczy.Items.Count - 1; i >= 0; i--)
+            {
+                if (lista_rzeczy.GetItemChecked(i))
+                {
+                    ulubione.Items.Add(lista_rzeczy.Items[i]);
+                    lista_rzeczy.Items.Remove(lista_rzeczy.Items[i]);
+                }
+            }
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "notatka_ulubione.txt")))
+            {
+                foreach (var line2 in ulubione.Items)
+                    outputFile.WriteLine(line2.ToString());
+            }
+            odswiezenie();
         }
     }
 

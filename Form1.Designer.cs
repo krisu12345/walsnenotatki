@@ -38,6 +38,8 @@ namespace walsnenotatki
             this.lista_rzeczy = new System.Windows.Forms.CheckedListBox();
             this.usun = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.ulubione = new System.Windows.Forms.CheckedListBox();
+            this.dodaj_fav = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tytul
@@ -116,11 +118,31 @@ namespace walsnenotatki
             this.timer.Interval = 10000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // ulubione
+            // 
+            this.ulubione.FormattingEnabled = true;
+            this.ulubione.Location = new System.Drawing.Point(775, 151);
+            this.ulubione.Name = "ulubione";
+            this.ulubione.Size = new System.Drawing.Size(238, 169);
+            this.ulubione.TabIndex = 8;
+            // 
+            // dodaj_fav
+            // 
+            this.dodaj_fav.Location = new System.Drawing.Point(215, 111);
+            this.dodaj_fav.Name = "dodaj_fav";
+            this.dodaj_fav.Size = new System.Drawing.Size(75, 23);
+            this.dodaj_fav.TabIndex = 9;
+            this.dodaj_fav.Text = "Favorite";
+            this.dodaj_fav.UseVisualStyleBackColor = true;
+            this.dodaj_fav.Click += new System.EventHandler(this.dodaj_fav_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1161, 617);
+            this.Controls.Add(this.dodaj_fav);
+            this.Controls.Add(this.ulubione);
             this.Controls.Add(this.usun);
             this.Controls.Add(this.lista_rzeczy);
             this.Controls.Add(this.priorytet);
@@ -145,6 +167,8 @@ namespace walsnenotatki
         private System.Windows.Forms.CheckedListBox lista_rzeczy;
         private System.Windows.Forms.Button usun;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.CheckedListBox ulubione;
+        private System.Windows.Forms.Button dodaj_fav;
     }
 }
 
